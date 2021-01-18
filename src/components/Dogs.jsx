@@ -5,27 +5,15 @@ import BreedDisplay from "./BreedDisplay";
 import BreedSelector from "./BreedSelector";
 
 export default function Dogs() {
-  const [pics, setPics] = useState([]);
-  const x = 15;
-  const [breed, setBreed] = useState("corgi");
+  const [breed, setBreed] = useState("All breeds");
 
-  if (x > 0) {
-    return (
-      <div>
-        <h1>{breed}</h1>
-        <Heading />
-        <BreedSelector onChange={(value) => setBreed(value)} />
-        <BreedDisplay pics={pics} setPics={setPics} breed={breed} />
-        {console.log("state is changed to", breed)}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Heading />
-        <BreedSelector />
-        <InfiniteList state={pics} setState={setPics} />
-      </div>
-    );
-  }
+  return (
+    <div style={{ backgroundColor: "rgb(33, 182, 168)" }}>
+      <Heading />
+      <BreedSelector onChange={(value) => setBreed(value)} />
+
+      <BreedDisplay breed={breed} />
+      {console.log("state is changed to", breed)}
+    </div>
+  );
 }

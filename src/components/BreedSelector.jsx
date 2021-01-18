@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class BreedSelector extends Component {
-  state = { breeds: [], selectedBreed: "Select a breed" };
+  state = { breeds: [], selectedBreed: "All breeds" };
 
   componentDidMount() {
     this.start();
@@ -21,7 +21,8 @@ class BreedSelector extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ paddingBottom: 50 }}>
+        <h2>Select the breed you want to see!</h2>
         {
           //<select onChange={this.handleBreedChange}>
         }
@@ -29,7 +30,7 @@ class BreedSelector extends Component {
           {
             //console.log(this.state.selectedBreed)
           }
-          <option>Select a breed</option>
+          <option>All breeds</option>
           {this.state.breeds.map((breed) => {
             return <option key={breed}>{breed}</option>;
           })}

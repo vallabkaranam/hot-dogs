@@ -2,31 +2,37 @@ import React, { useState, useEffect } from "react";
 
 export default function BreedDisplay(props) {
   const [loadMore, setLoadMore] = useState(true);
-  console.log("iinit", loadMore);
-  //const [currentBreed, setBreed] = useState(props.breed);
-  const [url, setUrl] = useState(
-    "https://dog.ceo/api/breed/" + props.breed + "/images/random/10"
-  );
 
-  console.log("this is props", props.breed);
-  console.log("init", loadMore);
+  const [pics, setPics] = useState([]);
 
+  //console.log("this is props", props.breed);
+
+  //cdm
+
+  /*  useEffect(() => {
+    //setPics([]);
+    //console.log("working!");
+    const url = getUrl(props.breed);
+    getData(url, loadMore);
+  }, []);
+ */
   useEffect(() => {
-    console.log("1");
-    setLoadMore(true);
-    console.log("inside", loadMore);
-    getData(loadMore);
+    //setPics([]);
+    const url = getUrl(props.breed);
+    getData(url, loadMore);
     setLoadMore(false);
-  });
+  }, [props.breed]);
 
-  useEffect(() => {
-    console.log("2");
-    getData(loadMore);
+  //// added
+  /* useEffect(() => {
+    const url = getUrl(props.breed);
+    getData(url, loadMore);
     setLoadMore(false);
   }, [loadMore]);
 
   useEffect(() => {
     const list = document.getElementById("list");
+    console.log(list);
     if (props.scrollable) {
       // list has fixed height
       list.addEventListener("scroll", (e) => {
@@ -46,39 +52,62 @@ export default function BreedDisplay(props) {
         }
       });
     }
-  }, []);
+  }, []); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     const list = document.getElementById("list");
+    console.log(list);
 
     if (list.clientHeight <= window.innerHeight && list.clientHeight) {
       setLoadMore(true);
     }
-  }, [props.pics]);
+  }, [pics]);
+ */
+  const getData = (url, load) => {
+    fetch(url)
+      .then((res) => {
+        return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
+      })
+      .then((res) => {
+        //console.log("res", res);
+        if (load) {
+          setPics([...pics, ...res.message]);
+        } else {
+          setPics([...res.message]);
+        }
 
-  const getData = (load) => {
-    console.log("get data");
-    console.log(load);
-
-    if (load) {
-      console.log(url);
-      fetch(url)
-        .then((res) => {
-          return !res.ok
-            ? res.json().then((e) => Promise.reject(e))
-            : res.json();
-        })
-        .then((res) => {
-          console.log("res", res);
-          props.setPics([...props.pics, ...res.message]);
-        });
-    }
+        //console.log(res.message);
+        //return res.message;
+      });
   };
+
+  const getUrl = (breed) => {
+    if (breed === "All breeds") {
+      return "https://dog.ceo/api/breeds/image/random/10";
+    }
+    return "https://dog.ceo/api/breed/" + breed + "/images/random/10";
+  };
+
+  /* const onScroll = (load, breed) => {
+    if (load) {
+      const url = getUrl(breed);
+      getData(url);
+    }
+  }; */
+
+  if (pics.length === 0) {
+    return (
+      <img
+        src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
+        alt="FETCHING your data"
+      />
+    );
+  }
 
   return (
     <div>
       <ul id="list">
-        {props.pics.map((img, i) => (
+        {pics.map((img, i) => (
           <li style={{ backgroundImage: `url(${img})` }} key={i} />
         ))}
       </ul>
