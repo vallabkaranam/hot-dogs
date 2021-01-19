@@ -10,7 +10,7 @@ export default function BreedDisplay(props) {
   useEffect(() => {
     const url = getUrl(props.breed);
     //getData(url, isBottom);
-    window.addEventListener("scroll", _.throttle(handleScroll, 300));
+    window.addEventListener("scroll", _.throttle(handleScroll, 500));
     //handleScroll);
     console.log("event listener");
     return () => window.removeEventListener("scroll", handleScroll);
@@ -18,6 +18,7 @@ export default function BreedDisplay(props) {
 
   //when breed changes
   useEffect(() => {
+    window.scrollTo(0, 0);
     const url = getUrl(props.breed);
     getData(url, isBottom);
   }, [props.breed]);
@@ -95,18 +96,18 @@ export default function BreedDisplay(props) {
       <div>
         <ul id="list">
           {pics.map((img, i) => (
-            <li style={{ backgroundImage: `url(${img})` }} key={i} />
+            <li
+              style={{
+                backgroundImage: `url(${img})`,
+                border: "solid #4ce6cc",
+              }}
+              key={i}
+            />
           ))}
         </ul>
-        <p style={{ color: "Grey" }}>
+        <p className="fonts" style={{ color: "Grey" }}>
           If you love what you see, scroll down to fetch some more!
         </p>
-        <img
-          src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
-          alt="FETCHING your data"
-          className="center"
-          style={{ width: 100, height: 100, paddingTop: 400 }}
-        />
       </div>
     );
   } else {
@@ -114,7 +115,13 @@ export default function BreedDisplay(props) {
       <div>
         <ul id="list">
           {pics.map((img, i) => (
-            <li style={{ backgroundImage: `url(${img})` }} key={i} />
+            <li
+              style={{
+                backgroundImage: `url(${img})`,
+                border: "solid #4ce6cc",
+              }}
+              key={i}
+            />
           ))}
         </ul>
       </div>

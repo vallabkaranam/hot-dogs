@@ -22,29 +22,23 @@ class BreedSelector extends Component {
   render() {
     return (
       <div>
-        <div style={{ paddingBottom: 50 }}>
-          <h2>Select the breed you want to see!</h2>
+        <h4 className="fonts">Select the breed you want to see!</h4>
+        {
+          //<select onChange={this.handleBreedChange}>
+        }
+
+        <select
+          className="custom-select custom-select-lg mb-3"
+          onChange={(event) => this.props.onChange(event.target.value)}
+        >
           {
-            //<select onChange={this.handleBreedChange}>
+            //console.log(this.state.selectedBreed)
           }
-          <div
-            style={{ position: "-webkit-sticky", position: "sticky", top: 0 }}
-          >
-            <select
-              className="custom-select custom-select-lg mb-3"
-              style={{ position: "sticky" }}
-              onChange={(event) => this.props.onChange(event.target.value)}
-            >
-              {
-                //console.log(this.state.selectedBreed)
-              }
-              <option>All breeds</option>
-              {this.state.breeds.map((breed) => {
-                return <option key={breed}>{breed}</option>;
-              })}
-            </select>
-          </div>
-        </div>
+          <option>All breeds</option>
+          {this.state.breeds.map((breed) => {
+            return <option key={breed}>{breed}</option>;
+          })}
+        </select>
       </div>
     );
   }

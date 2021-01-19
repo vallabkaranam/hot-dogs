@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Heading from "./Heading";
+//import Heading from "./Heading";
 import BreedDisplay from "./BreedDisplay";
 import BreedSelector from "./BreedSelector";
 
@@ -8,9 +8,23 @@ export default function Dogs() {
 
   return (
     <div>
-      <Heading />
-      <BreedSelector onChange={(value) => setBreed(value)} />
-      <BreedDisplay breed={breed} />
+      <div
+        style={{
+          //width: "100%",
+          //backgroundColor: "pink",
+          //position: "fixed",
+          paddingBottom: 250,
+        }}
+      >
+        {
+          //<Heading />
+        }
+
+        <BreedSelector onChange={(value) => setBreed(value)} />
+      </div>
+      <div>
+        <BreedDisplay breed={breed} />
+      </div>
     </div>
   );
 }
