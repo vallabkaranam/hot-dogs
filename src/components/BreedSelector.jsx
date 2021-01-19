@@ -5,7 +5,7 @@ class BreedSelector extends Component {
 
   componentDidMount() {
     this.start();
-    console.log(this.props);
+    //console.log(this.props);
   }
 
   async start() {
@@ -21,20 +21,22 @@ class BreedSelector extends Component {
 
   render() {
     return (
-      <div style={{ paddingBottom: 50 }}>
-        <h2>Select the breed you want to see!</h2>
-        {
-          //<select onChange={this.handleBreedChange}>
-        }
-        <select onChange={(event) => this.props.onChange(event.target.value)}>
+      <div>
+        <div style={{ paddingBottom: 50 }}>
+          <h2>Select the breed you want to see!</h2>
           {
-            //console.log(this.state.selectedBreed)
+            //<select onChange={this.handleBreedChange}>
           }
-          <option>All breeds</option>
-          {this.state.breeds.map((breed) => {
-            return <option key={breed}>{breed}</option>;
-          })}
-        </select>
+          <select onChange={(event) => this.props.onChange(event.target.value)}>
+            {
+              //console.log(this.state.selectedBreed)
+            }
+            <option>All breeds</option>
+            {this.state.breeds.map((breed) => {
+              return <option key={breed}>{breed}</option>;
+            })}
+          </select>
+        </div>
       </div>
     );
   }

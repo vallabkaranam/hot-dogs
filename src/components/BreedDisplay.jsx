@@ -1,84 +1,65 @@
 import React, { useState, useEffect } from "react";
 
 export default function BreedDisplay(props) {
-  const [loadMore, setLoadMore] = useState(true);
-
+  const [isBottom, setIsBottom] = useState(false);
   const [pics, setPics] = useState([]);
 
-  //console.log("this is props", props.breed);
-
   //cdm
-
-  /*  useEffect(() => {
-    //setPics([]);
-    //console.log("working!");
-    const url = getUrl(props.breed);
-    getData(url, loadMore);
-  }, []);
- */
   useEffect(() => {
-    //setPics([]);
     const url = getUrl(props.breed);
-    getData(url, loadMore);
-    setLoadMore(false);
+    getData(url, isBottom);
+    window.addEventListener("scroll", handleScroll);
+    console.log("event listener");
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const url = getUrl(props.breed);
+    getData(url, isBottom);
   }, [props.breed]);
 
-  //// added
-  /* useEffect(() => {
-    const url = getUrl(props.breed);
-    getData(url, loadMore);
-    setLoadMore(false);
-  }, [loadMore]);
+  const handleScroll = () => {
+    console.log("entered handleScroll");
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    var h =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+    console.log(h);
+    if (scrollTop + h + 50 >= scrollHeight) {
+      setIsBottom(true);
+      console.log("at the bottom of the page");
+      console.log(isBottom);
+    }
+  };
 
   useEffect(() => {
-    const list = document.getElementById("list");
-    console.log(list);
-    if (props.scrollable) {
-      // list has fixed height
-      list.addEventListener("scroll", (e) => {
-        const el = e.target;
-        if (el.scrollTop + el.clientHeight === el.scrollHeight) {
-          setLoadMore(true);
-        }
-      });
-    } else {
-      // list has auto height
-      window.addEventListener("scroll", () => {
-        if (
-          window.scrollY + window.innerHeight ===
-          list.clientHeight + list.offsetTop
-        ) {
-          setLoadMore(true);
-        }
-      });
+    if (isBottom) {
+      const url = getUrl(props.breed);
+      getData(url, isBottom);
     }
-  }, []); */
+  }, [isBottom]);
 
-  /* useEffect(() => {
-    const list = document.getElementById("list");
-    console.log(list);
-
-    if (list.clientHeight <= window.innerHeight && list.clientHeight) {
-      setLoadMore(true);
-    }
-  }, [pics]);
- */
-  const getData = (url, load) => {
+  const getData = (url, isBottom) => {
     fetch(url)
       .then((res) => {
         return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
       })
       .then((res) => {
-        //console.log("res", res);
-        if (load) {
-          setPics([...pics, ...res.message]);
+        if (isBottom) {
+          let allPics = [...pics, ...res.message];
+          let uniquePics = [...new Set(allPics)];
+          setPics([...uniquePics]);
         } else {
           setPics([...res.message]);
         }
-
-        //console.log(res.message);
-        //return res.message;
       });
+    setIsBottom(false);
   };
 
   const getUrl = (breed) => {
@@ -87,13 +68,6 @@ export default function BreedDisplay(props) {
     }
     return "https://dog.ceo/api/breed/" + breed + "/images/random/10";
   };
-
-  /* const onScroll = (load, breed) => {
-    if (load) {
-      const url = getUrl(breed);
-      getData(url);
-    }
-  }; */
 
   if (pics.length === 0) {
     return (
@@ -104,13 +78,26 @@ export default function BreedDisplay(props) {
     );
   }
 
-  return (
-    <div>
-      <ul id="list">
-        {pics.map((img, i) => (
-          <li style={{ backgroundImage: `url(${img})` }} key={i} />
-        ))}
-      </ul>
-    </div>
-  );
+  if (pics.length < 20) {
+    return (
+      <div>
+        <ul id="list">
+          {pics.map((img, i) => (
+            <li style={{ backgroundImage: `url(${img})` }} key={i} />
+          ))}
+        </ul>
+        <h1 style={{ paddingTop: 150 }}>Swipe up to see more!</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <ul id="list">
+          {pics.map((img, i) => (
+            <li style={{ backgroundImage: `url(${img})` }} key={i} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
