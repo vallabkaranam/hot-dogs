@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
 
 export default function BreedDisplay(props) {
   const [isBottom, setIsBottom] = useState(false);
@@ -7,12 +8,14 @@ export default function BreedDisplay(props) {
   //cdm
   useEffect(() => {
     const url = getUrl(props.breed);
-    getData(url, isBottom);
-    window.addEventListener("scroll", handleScroll);
+    //getData(url, isBottom);
+    window.addEventListener("scroll", _.throttle(handleScroll, 300));
+    //handleScroll);
     console.log("event listener");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  //when breed changes
   useEffect(() => {
     const url = getUrl(props.breed);
     getData(url, isBottom);
@@ -46,6 +49,7 @@ export default function BreedDisplay(props) {
   }, [isBottom]);
 
   const getData = (url, isBottom) => {
+    console.log("started get data");
     fetch(url)
       .then((res) => {
         return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
@@ -78,7 +82,7 @@ export default function BreedDisplay(props) {
     );
   }
 
-  if (pics.length < 20) {
+  if (pics.length === 10) {
     return (
       <div>
         <ul id="list">
@@ -86,7 +90,8 @@ export default function BreedDisplay(props) {
             <li style={{ backgroundImage: `url(${img})` }} key={i} />
           ))}
         </ul>
-        <h1 style={{ paddingTop: 150 }}>Swipe up to see more!</h1>
+        <h1>If you love what you see, scroll down to fetch some more!</h1>
+        <h1 style={{ paddingTop: 400 }}>Fetching some more!</h1>
       </div>
     );
   } else {
