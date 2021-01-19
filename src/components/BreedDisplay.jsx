@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
+import "../App.css";
 
 export default function BreedDisplay(props) {
   const [isBottom, setIsBottom] = useState(false);
@@ -75,10 +76,17 @@ export default function BreedDisplay(props) {
 
   if (pics.length === 0) {
     return (
-      <img
-        src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
-        alt="FETCHING your data"
-      />
+      <div>
+        <img
+          src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
+          alt="FETCHING your data"
+          className="center"
+        />
+        <p
+          className="center"
+          style={{ color: "grey", height: 50, width: 50 }}
+        ></p>
+      </div>
     );
   }
 
@@ -90,8 +98,15 @@ export default function BreedDisplay(props) {
             <li style={{ backgroundImage: `url(${img})` }} key={i} />
           ))}
         </ul>
-        <h1>If you love what you see, scroll down to fetch some more!</h1>
-        <h1 style={{ paddingTop: 400 }}>Fetching some more!</h1>
+        <p style={{ color: "Grey" }}>
+          If you love what you see, scroll down to fetch some more!
+        </p>
+        <img
+          src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
+          alt="FETCHING your data"
+          className="center"
+          style={{ width: 100, height: 100, paddingTop: 400 }}
+        />
       </div>
     );
   } else {

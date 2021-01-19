@@ -11,9 +11,6 @@ export default function Dogs() {
       <Heading />
       <BreedSelector onChange={(value) => setBreed(value)} />
       <BreedDisplay breed={breed} />
-      {
-        //console.log("state is changed to", breed)
-      }
     </div>
   );
 }

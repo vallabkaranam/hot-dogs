@@ -27,15 +27,23 @@ class BreedSelector extends Component {
           {
             //<select onChange={this.handleBreedChange}>
           }
-          <select onChange={(event) => this.props.onChange(event.target.value)}>
-            {
-              //console.log(this.state.selectedBreed)
-            }
-            <option>All breeds</option>
-            {this.state.breeds.map((breed) => {
-              return <option key={breed}>{breed}</option>;
-            })}
-          </select>
+          <div
+            style={{ position: "-webkit-sticky", position: "sticky", top: 0 }}
+          >
+            <select
+              className="custom-select custom-select-lg mb-3"
+              style={{ position: "sticky" }}
+              onChange={(event) => this.props.onChange(event.target.value)}
+            >
+              {
+                //console.log(this.state.selectedBreed)
+              }
+              <option>All breeds</option>
+              {this.state.breeds.map((breed) => {
+                return <option key={breed}>{breed}</option>;
+              })}
+            </select>
+          </div>
         </div>
       </div>
     );

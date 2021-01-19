@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Dogs from "./components/Dogs";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
   state = {};

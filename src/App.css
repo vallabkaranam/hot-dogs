@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#root {
+  background-color: rgb(200, 235, 226);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
