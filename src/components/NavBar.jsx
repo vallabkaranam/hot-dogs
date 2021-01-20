@@ -5,7 +5,10 @@ import "../NavBar.css";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light navColor">
-      <Link className="navbar-brand navWords" to="/">
+      <Link
+        className="navbar-brand navWords"
+        to="/"
+      >
         Hot Dogs
       </Link>
       <button
@@ -21,10 +24,10 @@ const NavBar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <NavLink className="nav-item nav-link navWords" to="/dogs">
+          <NavLink className="nav-item nav-link navWords " to="/dogs">
             Dogs <span className="sr-only">(current)</span>
           </NavLink>
-          <NavLink className="nav-item nav-link navWords" to="/customers">
+          <NavLink className="nav-item nav-link navWords " to="/customers">
             Customers
           </NavLink>
         </div>

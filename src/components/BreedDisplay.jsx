@@ -8,9 +8,9 @@ export default function BreedDisplay(props) {
 
   //cdm
   useEffect(() => {
-    const url = getUrl(props.breed);
+    //const url = getUrl(props.breed, 20);
     //getData(url, isBottom);
-    window.addEventListener("scroll", _.throttle(handleScroll, 500));
+    window.addEventListener("scroll", _.throttle(handleScroll, 300));
     //handleScroll);
     console.log("event listener");
     return () => window.removeEventListener("scroll", handleScroll);
@@ -18,13 +18,13 @@ export default function BreedDisplay(props) {
 
   //when breed changes
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const url = getUrl(props.breed);
+    //window.scrollTo(0, 0);
+    const url = getUrl(props.breed, 20);
     getData(url, isBottom);
   }, [props.breed]);
 
   const handleScroll = () => {
-    console.log("entered handleScroll");
+    /* console.log("entered handleScroll"); */
     const scrollTop =
       (document.documentElement && document.documentElement.scrollTop) ||
       document.body.scrollTop;
@@ -38,14 +38,14 @@ export default function BreedDisplay(props) {
     console.log(h);
     if (scrollTop + h + 50 >= scrollHeight) {
       setIsBottom(true);
-      console.log("at the bottom of the page");
-      console.log(isBottom);
+      /* console.log("at the bottom of the page");
+      console.log(isBottom); */
     }
   };
 
   useEffect(() => {
     if (isBottom) {
-      const url = getUrl(props.breed);
+      const url = getUrl(props.breed, 10);
       getData(url, isBottom);
     }
   }, [isBottom]);
@@ -68,11 +68,11 @@ export default function BreedDisplay(props) {
     setIsBottom(false);
   };
 
-  const getUrl = (breed) => {
+  const getUrl = (breed, nums) => {
     if (breed === "All breeds") {
-      return "https://dog.ceo/api/breeds/image/random/10";
+      return "https://dog.ceo/api/breeds/image/random/" + nums;
     }
-    return "https://dog.ceo/api/breed/" + breed + "/images/random/10";
+    return "https://dog.ceo/api/breed/" + breed + "/images/random/" + nums;
   };
 
   if (pics.length === 0) {
