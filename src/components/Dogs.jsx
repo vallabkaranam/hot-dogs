@@ -2,7 +2,7 @@ import React, { useState, useContext, createContext } from "react";
 //import Heading from "./Heading";
 import DataProcessor from "./DataProcessor";
 import BreedSelector from "./BreedSelector";
-import logo from "../logo.png";
+
 import ScrollUp from "./ScrollUp";
 import { UserContext } from "./User";
 

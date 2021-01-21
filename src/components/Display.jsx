@@ -40,6 +40,9 @@ const Display = ({ pics, setPics, favPics, setFavPics }) => {
             onClick={() => {
               favPics = [...favPics, img];
               console.log("Added to your favorites!");
+              window.confirm(
+                "Are you sure that you want to mark this as a Hot Dog?"
+              ); //given more time, this would be replaced with a toaster component that notifies that you have added to your favorites list;
             }}
           />
         ))}

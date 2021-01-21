@@ -22,10 +22,16 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <NavLink className="nav-item nav-link navWords " to="/dogs">
-            Dogs <span className="sr-only">(current)</span>
+            Browse Dogs <span className="sr-only">(current)</span>
           </NavLink>
           <NavLink className="nav-item nav-link navWords " to="/favorites">
             Favorites
+          </NavLink>
+          <NavLink className="nav-item nav-link navWords " to="/">
+            Login
+          </NavLink>
+          <NavLink className="nav-item nav-link navWords " to="/">
+            Sign Up
           </NavLink>
         </div>
       </div>

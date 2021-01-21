@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { UserContext } from "./User";
 import Heading from "./Heading";
+import logo from "../logo.png";
 
 const Favorites = (props) => {
   const favPicsContext = useContext(UserContext);
@@ -9,6 +10,8 @@ const Favorites = (props) => {
   return (
     <React.Fragment>
       <Heading />
+
+      <img className="center" src={logo} alt="logo" />
     </React.Fragment>
   );
 };
