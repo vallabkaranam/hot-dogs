@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
-import "./scroll.css";
+import "./ScrollUp.css";
 
-const Scroll = () => {
+const ScrollUp = () => {
   const [showScroll, setShowScroll] = useState(false);
 
   const checkScrollTop = () => {
@@ -28,4 +28,4 @@ const Scroll = () => {
   );
 };
 
-export default Scroll;
+export default ScrollUp;

@@ -5,10 +5,7 @@ import "../NavBar.css";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light navColor">
-      <Link
-        className="navbar-brand navWords"
-        to="/"
-      >
+      <Link className="navbar-brand navWords" to="/">
         Hot Dogs
       </Link>
       <button
@@ -27,8 +24,8 @@ const NavBar = () => {
           <NavLink className="nav-item nav-link navWords " to="/dogs">
             Dogs <span className="sr-only">(current)</span>
           </NavLink>
-          <NavLink className="nav-item nav-link navWords " to="/customers">
-            Customers
+          <NavLink className="nav-item nav-link navWords " to="/favorites">
+            Favorites
           </NavLink>
         </div>
       </div>

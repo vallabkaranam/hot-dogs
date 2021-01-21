@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import "../App.css";
+import Display from "./Display";
 
-export default function BreedDisplay(props) {
+export default function DataProcessor(props) {
   const [isBottom, setIsBottom] = useState(false);
   const [pics, setPics] = useState([]);
+  const [favPics, setFavPics] = useState([]);
 
   //cdm
   useEffect(() => {
@@ -12,7 +14,7 @@ export default function BreedDisplay(props) {
     //getData(url, isBottom);
     window.addEventListener("scroll", _.throttle(handleScroll, 300));
     //handleScroll);
-    console.log("event listener");
+    //console.log("event listener");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -35,7 +37,7 @@ export default function BreedDisplay(props) {
       window.innerHeight ||
       document.documentElement.clientHeight ||
       document.body.clientHeight;
-    console.log(h);
+    //console.log(h);
     if (scrollTop + h + 50 >= scrollHeight) {
       setIsBottom(true);
       /* console.log("at the bottom of the page");
@@ -51,7 +53,7 @@ export default function BreedDisplay(props) {
   }, [isBottom]);
 
   const getData = (url, isBottom) => {
-    console.log("started get data");
+    //console.log("started get data");
     fetch(url)
       .then((res) => {
         return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
@@ -74,24 +76,9 @@ export default function BreedDisplay(props) {
     }
     return "https://dog.ceo/api/breed/" + breed + "/images/random/" + nums;
   };
+  //else {
 
-  if (pics.length === 0) {
-    return (
-      <div>
-        <img
-          src="https://media.giphy.com/media/3o6gaRoRoR01FU29KE/giphy.gif"
-          alt="FETCHING your data"
-          className="center"
-        />
-        <p
-          className="center"
-          style={{ color: "grey", height: 50, width: 50 }}
-        ></p>
-      </div>
-    );
-  }
-
-  if (pics.length === 10) {
+  /*  if (pics.length === 10) {
     return (
       <div>
         <ul id="list">
@@ -102,6 +89,7 @@ export default function BreedDisplay(props) {
                 border: "solid #4ce6cc",
               }}
               key={i}
+              onClick={console.log(img)}
             />
           ))}
         </ul>
@@ -110,21 +98,18 @@ export default function BreedDisplay(props) {
         </p>
       </div>
     );
-  } else {
-    return (
-      <div>
-        <ul id="list">
-          {pics.map((img, i) => (
-            <li
-              style={{
-                backgroundImage: `url(${img})`,
-                border: "solid #4ce6cc",
-              }}
-              key={i}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  
+  } */
+  return (
+    <React.Fragment>
+      <Display
+        pics={pics}
+        setPics={setPics}
+        favPics={favPics}
+        setFavPics={setFavPics}
+      />
+    </React.Fragment>
+  );
+
+  //}
 }

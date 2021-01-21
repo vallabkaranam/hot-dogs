@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
 //import Heading from "./Heading";
-import BreedDisplay from "./BreedDisplay";
+import DataProcessor from "./DataProcessor";
 import BreedSelector from "./BreedSelector";
 import logo from "../logo.png";
-import Scroll from "./scroll";
+import ScrollUp from "./ScrollUp";
+import { UserContext } from "./User";
 
-export default function Dogs() {
+//import { createContext } from "react";
+
+export default function Dogs(props) {
+  //const favPics = useContext(UserContext);
   const [breed, setBreed] = useState("All breeds");
-
-  console.log(window.pageYOffset);
 
   return (
     <React.Fragment>
@@ -18,9 +20,9 @@ export default function Dogs() {
 
       {/*  Display */}
       <div style={{ paddingTop: 50 }}>
-        <BreedDisplay breed={breed} />
+        <DataProcessor breed={breed} />
       </div>
-      <Scroll />
+      <ScrollUp />
     </React.Fragment>
   );
 }
