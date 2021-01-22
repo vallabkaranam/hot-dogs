@@ -1,4 +1,4 @@
-### Hot Dogs
+# Hot Dogs
 
 ## Project Overview
 Developed a single page view application using React featuring over hundreds of pictures of dogs of all different breeds. The user can also filter by breed, as well as save to a list of favorites to be viewed in a separate page (feature under construction). All application components are usable across modern desktop, tablet, and phone browsers.
@@ -12,11 +12,11 @@ A scroll component that allows the user to swiftly return to the top of the page
 Add to a list of favorites to be viewed in a separate page (feature under construction).
 All application components render on-screen in a responsive manner.
 
-# APIs Used
+### APIs Used
 Dog API
 Context API
 
-# Tools
+### Tools
 React
 (HTML, CSS, JS)
 Bootstrap
