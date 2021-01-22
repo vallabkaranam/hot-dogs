@@ -1,7 +1,7 @@
 # Hot Dogs
 
 ## Project Overview
-Developed a single page view application using React featuring over hundreds of pictures of dogs of all different breeds. The user can also filter by breed, as well as save to a list of favorites to be viewed in a separate page (feature under construction). All application components are usable across modern desktop, tablet, and phone browsers.
+Developed a single page view application using React featuring over hundreds of pictures of dogs of all different breeds. The user can also filter by breed, as well as save to a list of favorites to be viewed in a separate page (feature under construction). All application components are usable across modern desktop, tablet, and phone browsers. View the application at: https://hot-dogs21.herokuapp.com/.
 
 ## Functionalities
 A dropdown of breeds is provided which is set to 'all breeds' by default and can be changed to filter by any breed.
