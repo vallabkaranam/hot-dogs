@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Oxygen",
+  /*  font-family: "Roboto"
+    /* -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,10 +11,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.fonts {
-  font-family: "Roboto";
 }
 
 .App {
@@ -24,6 +21,18 @@ code {
   margin: 0;
   padding: 0;
 }
+
+.fonts {
+  font-family: "Roboto";
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .navbar {
   margin-bottom: 10px;
 }
@@ -38,8 +47,6 @@ li {
 
 #block {
   width: 100%;
-  /* height: 700px;
-   */
 }
 
 #list {
@@ -48,6 +55,5 @@ li {
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   height: 100%;
-
   overflow: auto;
 }

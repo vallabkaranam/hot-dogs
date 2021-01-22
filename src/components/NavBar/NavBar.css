@@ -1,0 +1,24 @@
+.navWords {
+  font-family: "roboto";
+  font-weight: "bold";
+}
+.navColor {
+  background-color: rgba(3, 150, 101, 0.256);
+}
+
+.leftSide {
+  width: 100%;
+  display: flex;
+}
+
+.takeAll {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.dontBreak {
+  white-space: nowrap;
+}

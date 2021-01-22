@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
 class BreedSelector extends Component {
-  state = { breeds: [], selectedBreed: "All breeds" };
+  state = { breeds: [], selectedBreed: "" };
 
   componentDidMount() {
-    this.start();
-    //console.log(this.props);
+    this.getBreedList();
   }
 
-  async start() {
+  async getBreedList() {
     const response = await fetch("https://dog.ceo/api/breeds/list/all");
     const data = await response.json();
     const breeds = Object.keys(data.message);
@@ -23,17 +22,11 @@ class BreedSelector extends Component {
     return (
       <div>
         <h4 className="fonts">Select the breed you want to see!</h4>
-        {
-          //<select onChange={this.handleBreedChange}>
-        }
 
         <select
           className="custom-select custom-select-lg mb-3"
           onChange={(event) => this.props.onChange(event.target.value)}
         >
-          {
-            //console.log(this.state.selectedBreed)
-          }
           <option>All breeds</option>
           {this.state.breeds.map((breed) => {
             return <option key={breed}>{breed}</option>;
